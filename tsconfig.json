@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "es2016",                                 
+    "strict": true,                                 
+    "skipLibCheck": true                            
+  }
+}
