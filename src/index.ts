@@ -1,10 +1,10 @@
 import { CsvFileReader } from './CsvFileReader';
+import { MatchReader } from './inheritance-refactor/MatchReader';
 import { MatchResult } from './MatchResult';
 
-const csvFileReader = new CsvFileReader();
+const matchReader = new MatchReader();
 
-const matches = csvFileReader.read('football.csv');
-console.log(matches[0][0]);
+const matches = matchReader.read('football.csv');
 
 let manUnitedWins = 0;
 
