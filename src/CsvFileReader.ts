@@ -1,18 +1,16 @@
 import * as fs from 'fs';
+import { DataReader } from './MatchReader';
 
-export abstract class CsvFileReader<T> {
-  public data: T[] = [];
+export class CsvFileReader implements DataReader {
+  public data: string[][] = [];
 
-  abstract mapRow(row: string[]): T;
-
-  public read(fileName: string): T[] {
+  public read(fileName: string) {
     const data = fs
       .readFileSync(fileName, { encoding: 'utf-8' })
       .split('\n')
-      .map((row: string): string[] => row.split(','))
-      .map((row) => this.mapRow(row));
+      .map((row: string): string[] => row.split(','));
 
-    console.log(data);
-    return data;
+    this.data = data;
+    return this.data;
   }
 }
