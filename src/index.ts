@@ -1,20 +1,18 @@
+import { AverageGoalsAnalyzer } from './AverageGoalsAnalyzer';
+import { ConsoleReport } from './ConsoleReport';
 import { CsvFileReader } from './CsvFileReader';
 import { MatchReader } from './MatchReader';
-import { MatchResult } from './MatchResult';
+import { Summary } from './Summary';
 
-//Create an object that satisfies the 'DataReader interface' to be used on the MatchReader
+//Create an object that satisfies the 'DataReader interface' to be used on the MatchReader - Information source
 const csvFileReader = new CsvFileReader();
 
 const matchReader = new MatchReader(csvFileReader);
-matchReader.load('football.csv');
-let manUnitedWins = 0;
+matchReader.load('football.csv'); //parsed data in MatchResult format
 
-for (let match of matchReader.matches) {
-  if (
-    (match[1] === 'Man United' && match[5] === MatchResult.homeWin) ||
-    (match[2] === 'Man United' && match[5] === MatchResult.awayWin)
-  ) {
-    manUnitedWins++;
-  }
-}
-console.log(`Man United won ${manUnitedWins} times`);
+const averageGoalAnalyzer = new AverageGoalsAnalyzer();
+const consoleReport = new ConsoleReport();
+
+const summaryBuilder = new Summary(averageGoalAnalyzer, consoleReport);
+
+summaryBuilder.buildAndPrintReport(matchReader.matches);
