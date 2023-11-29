@@ -1,5 +1,5 @@
-import { MatchData } from './MatchData';
-import { Analyzer } from './Summary';
+import { MatchData } from '../MatchData';
+import { Analyzer } from '../Summary';
 
 export class AverageGoalsAnalyzer implements Analyzer {
   run(matchData: MatchData[]): string {

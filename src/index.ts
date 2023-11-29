@@ -1,9 +1,9 @@
-import { AverageGoalsAnalyzer } from './AverageGoalsAnalyzer';
-import { ConsoleReport } from './ConsoleReport';
+import { AverageGoalsAnalyzer } from './analyzers/AverageGoalsAnalyzer';
+import { ConsoleReport } from './reporters/ConsoleReport';
 import { CsvFileReader } from './CsvFileReader';
 import { MatchReader } from './MatchReader';
 import { Summary } from './Summary';
-import { WinsAnalyzer } from './WinsAnalyzer';
+import { WinsAnalyzer } from './analyzers/WinsAnalyzer';
 
 //Create an object that satisfies the 'DataReader interface' to be used on the MatchReader - Information source
 const csvFileReader = new CsvFileReader();
