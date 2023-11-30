@@ -12,26 +12,37 @@ const csvFileReader = new CsvFileReader();
 const matchReader = new MatchReader(csvFileReader);
 matchReader.load('football.csv'); //parsed data in MatchResult format
 
-const averageGoalAnalyzer = new AverageGoalsAnalyzer();
-const winsAnalyzer = new WinsAnalyzer();
-const consoleReport = new ConsoleReporter();
-const htmlReport = new HtmlReporter();
+const winsSummaryWithConsoleReport = Summary.reportInstance(
+  { reportFormat: 'console' },
+  { analysisType: 'wins' }
+);
+const averageGoalsWithConsoleReport = Summary.reportInstance(
+  { reportFormat: 'console' },
+  { analysisType: 'averageGoals' }
+);
+const winsSummaryWithHtmlReport = Summary.reportInstance(
+  { reportFormat: 'html' },
+  { analysisType: 'wins' }
+);
+const averageGoalsSummaryWithHtmlReport = Summary.reportInstance(
+  { reportFormat: 'html' },
+  { analysisType: 'averageGoals' }
+);
 
-const summaryBuilder = new Summary(averageGoalAnalyzer, consoleReport);
-const summaryBuilder2 = new Summary(winsAnalyzer, consoleReport);
-const summaryBuilder3 = new Summary(winsAnalyzer, htmlReport);
-const summaryBuilder4 = new Summary(averageGoalAnalyzer, htmlReport);
+averageGoalsWithConsoleReport.buildAndPrintReport(matchReader.matches);
+winsSummaryWithConsoleReport.buildAndPrintReport(
+  matchReader.matches,
+  'Man City'
+);
 
-summaryBuilder.buildAndPrintReport(matchReader.matches);
-summaryBuilder2.buildAndPrintReport(matchReader.matches, 'Man City');
-
-summaryBuilder3.buildAndPrintReport(
+winsSummaryWithHtmlReport.buildAndPrintReport(
   matchReader.matches,
   'Man United',
-  'wins-reports.html'
+  'wins-report.html'
 );
-summaryBuilder4.buildAndPrintReport(
+
+averageGoalsSummaryWithHtmlReport.buildAndPrintReport(
   matchReader.matches,
-  '_',
-  'average-goals-reports.html'
+  '',
+  'average-goals-report.html'
 );
