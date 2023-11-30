@@ -3,10 +3,10 @@ import { MatchReader } from './MatchReader';
 import { Summary } from './Summary';
 
 //Create an object that satisfies the 'DataReader interface' to be used on the MatchReader - Information source
-
 const matchReader = MatchReader.newDataReader({ fileReaderFormat: 'csv' });
 matchReader.load('football.csv'); //parsed data in MatchResult format
 
+//Create report instances with report format and analysis type for each type of report
 const winsSummaryWithConsoleReport = Summary.reportInstance(
   { reportFormat: 'console' },
   { analysisType: 'wins' }
@@ -24,6 +24,7 @@ const averageGoalsSummaryWithHtmlReport = Summary.reportInstance(
   { analysisType: 'averageGoals' }
 );
 
+//Generate reports with provided options
 averageGoalsWithConsoleReport.buildAndPrintReport(matchReader.matches);
 winsSummaryWithConsoleReport.buildAndPrintReport(
   matchReader.matches,
