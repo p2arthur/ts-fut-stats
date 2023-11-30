@@ -1,15 +1,10 @@
-import { AverageGoalsAnalyzer } from './analyzers/AverageGoalsAnalyzer';
-import { ConsoleReporter } from './reporters/ConsoleReporter';
 import { CsvFileReader } from './CsvFileReader';
 import { MatchReader } from './MatchReader';
 import { Summary } from './Summary';
-import { WinsAnalyzer } from './analyzers/WinsAnalyzer';
-import { HtmlReporter } from './reporters/HtmlReporter';
 
 //Create an object that satisfies the 'DataReader interface' to be used on the MatchReader - Information source
-const csvFileReader = new CsvFileReader();
 
-const matchReader = new MatchReader(csvFileReader);
+const matchReader = MatchReader.newDataReader({ fileReaderFormat: 'csv' });
 matchReader.load('football.csv'); //parsed data in MatchResult format
 
 const winsSummaryWithConsoleReport = Summary.reportInstance(

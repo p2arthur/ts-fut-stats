@@ -1,3 +1,4 @@
+import { CsvFileReader } from './CsvFileReader';
 import { MatchData } from './MatchData';
 import { MatchResult } from './MatchResult';
 import { dateStringToDate } from './utils';
@@ -7,10 +8,23 @@ export interface DataReader {
   data: string[][];
 }
 
+type FileReaderFormat = {
+  fileReaderFormat: 'csv';
+};
+
 export class MatchReader {
   public matches: MatchData[] = [];
 
   constructor(private reader: DataReader) {}
+
+  static newDataReader({ fileReaderFormat }: FileReaderFormat) {
+    const csvFileReader = new CsvFileReader();
+    if (fileReaderFormat === 'csv') {
+      return new MatchReader(csvFileReader);
+    } else {
+      return new MatchReader(csvFileReader);
+    }
+  }
 
   load(fileName: string): MatchData[] {
     this.reader.read(fileName);

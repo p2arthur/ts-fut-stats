@@ -25,7 +25,7 @@ export class Summary {
   static reportInstance(
     { reportFormat }: ReportFormat,
     { analysisType }: AnalysisType
-  ) {
+  ): Summary {
     const winsAnalyzer = new WinsAnalyzer();
     const averageGoalsAnalyzer = new AverageGoalsAnalyzer();
     const consoleReporter = new ConsoleReporter();
